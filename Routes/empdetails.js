@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 
 //we can use auth in get request for data protection 
 
-router.get('', auth,User)
+router.get('', User)
 
 //register route
 router.post('/addemp',addUser)
@@ -17,6 +17,7 @@ router.post('/login',loginUser)
 
 router.delete('/:id',delData)
 
+// update route
 router.put('/:id', updateData);
 
 module.exports= router;
