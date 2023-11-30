@@ -65,4 +65,42 @@ const addemp = async (req, res) => {
   };
   
 
-module.exports= {Emp,addemp,delData }
+  const updateData = async (req, res) => {
+    try {
+      // Destructure required fields from req.body
+      const { firstName, lastName, email } = req.body;
+  
+      // Create user object
+      const updatedUser = {
+        firstName,
+        lastName,
+        email
+      };
+  
+      // Validate ID
+      if (!ObjectID.isValid(req.params.id)) {
+        return res.status(400).send('Invalid ID: ' + req.params.id);
+      }
+  
+      // Find and update document
+      const updatedDocument = await userDetails.findByIdAndUpdate(
+        req.params.id,
+        { $set: updatedUser },
+        { new: true }
+      );
+  
+      // Handle if document doesn't exist
+      if (!updatedDocument) {
+        return res.status(404).send('No record found with ID ' + req.params.id);
+      }
+  
+      // Send the updated document as a response
+      res.send(updatedDocument);
+    } catch (err) {
+      console.error("Error updating data:", err);
+      res.status(500).send("Internal Server Error");
+    }
+  };
+  
+
+module.exports= {Emp,addemp,delData,updateData }
