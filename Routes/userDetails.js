@@ -7,11 +7,9 @@ const ObjectID = require('mongoose').Types.ObjectId;
 
 router.get('', Emp)
 
-
 router.post('/addEmp',addemp);
 
 router.delete('/:id',delData)
-
 
 router.put('/:id', updateData);
 

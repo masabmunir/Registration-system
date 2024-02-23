@@ -14,8 +14,6 @@ const Emp = async (req, res) => {
   }
 };
 
-
-
 const addemp = async (req, res) => {
     try {
       const { firstName, lastName, email } = req.body;
@@ -42,7 +40,7 @@ const addemp = async (req, res) => {
         error: error.message,
       });
     }
-  };
+};
   
 
   const delData = async (req, res) => {
@@ -62,12 +60,11 @@ const addemp = async (req, res) => {
       console.error('Error deleting data:', error);
       res.status(500).send('Error deleting data');
     }
-  };
+};
   
 
   const updateData = async (req, res) => {
     try {
-      // Destructure required fields from req.body
       const { firstName, lastName, email } = req.body;
   
       // Create user object
@@ -100,7 +97,7 @@ const addemp = async (req, res) => {
       console.error("Error updating data:", err);
       res.status(500).send("Internal Server Error");
     }
-  };
+};
   
 
 module.exports= {Emp,addemp,delData,updateData }
